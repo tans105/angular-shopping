@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
-@Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
-})
-export class HeaderComponent implements OnInit {
+@Component( {
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css']
+} )
+export class HeaderComponent implements OnInit
+{
 
-  constructor() { }
+    @Output() headerEvent = new EventEmitter();
 
-  ngOnInit() {
-  }
+    constructor()
+    {
+    }
+
+    ngOnInit()
+    {
+    }
+
+    handleNavigation( module )
+    {
+        console.log(module);
+        this.headerEvent.emit( module );
+    }
 
 }
