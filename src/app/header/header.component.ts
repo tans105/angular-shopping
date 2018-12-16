@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit
 
     handleNavigation( module )
     {
-        console.log(module);
         this.headerEvent.emit( module );
     }
 
