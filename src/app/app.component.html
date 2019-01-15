@@ -1,13 +1,8 @@
-<app-header (headerEvent)='toggleMenu($event)'></app-header>
+<app-header></app-header>
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <div *ngIf="activateRecipe === 'R'">
-                <app-recipes></app-recipes>
-            </div>
-            <div *ngIf="activateRecipe ==='S'">
-                <app-shopping-list></app-shopping-list>
-            </div>
+            <router-outlet></router-outlet>
         </div>
     </div>
 </div>
