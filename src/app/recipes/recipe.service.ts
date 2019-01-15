@@ -32,6 +32,10 @@ export class RecipeService {
         return this.recipes.slice(); //not returning direct reference. Returning a new copy of the recipe array. Prevent access of recipes array from outside.
     }
 
+    getRecipeById(index: number) {
+        return this.recipes[index];
+    }
+
     addIngredientToShoppingList(ingredients: Ingredient[]) {
         this.slService.addIngredientsForRecipe(ingredients);
     }
