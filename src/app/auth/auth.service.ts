@@ -5,6 +5,7 @@ import * as firebase from "firebase";
     providedIn: 'root'
 })
 export class AuthService {
+    tk: string;
 
     constructor() {
     }
@@ -18,10 +19,32 @@ export class AuthService {
     signInUser(email: string, password: string) {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(
-                (resp) => console.log(resp)
+                (resp) => {
+                    firebase.auth().currentUser.getIdToken()
+                        .then(
+                            (token: string) => this.tk = token
+                        )
+                }
             )
             .catch(
                 (err) => console.log(err)
             )
+    }
+
+    getToken() {
+        firebase.auth().currentUser.getIdToken()
+            .then(
+                (token: string) => this.tk = token
+            );
+        return this.tk;
+    }
+
+    isAuthenticated() {
+        return this.tk != null;
+    }
+
+    logout() {
+        firebase.auth().signOut();
+        this.tk = null;
     }
 }
